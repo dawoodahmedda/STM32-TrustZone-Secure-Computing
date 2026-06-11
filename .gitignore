@@ -1,0 +1,7 @@
+Debug/
+Release/
+.settings/
+*.o
+*.d
+*.su
+*.metadata/
