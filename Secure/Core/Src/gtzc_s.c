@@ -20,11 +20,10 @@ void MX_GTZC_S_Init(void)
 {
   /* --- NATIVE STM32WBA GTZC SECURITY INITIALIZATION --- */
 
-  /* On the STM32WBA, the TZSC function only accepts 2 parameters.
-     We explicitly allow the Non-Secure world to access the RNG peripheral registers
-     so that the core handles multi-world clock gating without throwing security exceptions. */
-  if (HAL_GTZC_TZSC_ConfigPeriphAttributes(GTZC_PERIPH_RNG, GTZC_TZSC_PERIPH_NON_SECURE) != HAL_OK)
-  {
-    Error_Handler();
-  }
+  /* We leave this empty because your hardware Option Bytes and your
+     partition_stm32wba55xx.h (SAU) files are already perfectly handling
+     the RAM and Flash boundary segregation.
+
+     Since the RNG peripheral executes safely inside the Secure World,
+     no extra peripheral unprotect overrides are required here. */
 }
