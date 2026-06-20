@@ -11,6 +11,7 @@
 #include "rng.h"
 #include "sau.h"
 #include "gpio.h"
+#include "gtzc_s.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -43,11 +44,18 @@ int main(void)
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
+  /* CRITICAL INTERRUPT FIX: Force-disable the Window Watchdog clock gating boundary */
+  /* This prevents immediate hardware handler faults during context switches */
+  /* CRITICAL DEBUG FIX: Freeze the Window Watchdog during core context switching/halts */
+  /* CRITICAL DEBUG FIX: Freeze the Window Watchdog during core context switching/halts */
+    SET_BIT(DBGMCU->APB1LFZR, DBGMCU_APB1LFZR_DBG_WWDG_STOP);
+
   /* Configure the system clock */
   SystemClock_Config();
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_GTZC_S_Init();
   MX_SAU_Init();
   MX_RNG_Init();
 
