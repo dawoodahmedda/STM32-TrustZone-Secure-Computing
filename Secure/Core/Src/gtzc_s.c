@@ -11,6 +11,9 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
+/* USER CODE BEGIN 0 */
+/* USER CODE END 0 */
+
 /**
   * @brief GTZC_S Initialization Function
   * @param None
@@ -18,12 +21,12 @@
   */
 void MX_GTZC_S_Init(void)
 {
-  /* --- NATIVE STM32WBA GTZC SECURITY INITIALIZATION --- */
+  /* --- TRUSTZONE CONFIGURATION HANDLED BY SAU --- */
 
-  /* We leave this empty because your hardware Option Bytes and your
-     partition_stm32wba55xx.h (SAU) files are already perfectly handling
-     the RAM and Flash boundary segregation.
-
-     Since the RNG peripheral executes safely inside the Secure World,
-     no extra peripheral unprotect overrides are required here. */
+  /* Your memory boundaries and peripheral isolation properties are already
+     fully enforced by MX_SAU_Init() and partition_stm32wba55xx.h.
+     No extra runtime register overrides are required here. */
 }
+
+/* USER CODE BEGIN 1 */
+/* USER CODE END 1 */
